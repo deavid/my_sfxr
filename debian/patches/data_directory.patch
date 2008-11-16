@@ -1,29 +1,44 @@
 # Copyright (C) 2008  Miriam Ruiz <little_miry@yahoo.es>
 # Distributed under the same license as the program. See debian/copyright.
 
-Index: sfxr-sdl/main.cpp
+Index: sfxr/main.cpp
 ===================================================================
---- sfxr-sdl.orig/main.cpp	2008-08-30 22:39:35.000000000 +0200
-+++ sfxr-sdl/main.cpp	2008-08-30 22:40:20.000000000 +0200
+--- sfxr.orig/main.cpp	2008-11-16 16:52:17.000000000 +0100
++++ sfxr/main.cpp	2008-11-16 16:55:11.000000000 +0100
 @@ -23,6 +23,10 @@
  #include "SDL/SDL.h"
  #endif
  
 +#ifndef DATADIR
-+DATADIR="."
++DATADIR="/usr/share/sfxr"
 +#endif
 +
  #define rnd(n) (rand()%(n+1))
  
  #define PI 3.14159265f
-@@ -1126,8 +1130,8 @@
+@@ -1126,21 +1130,21 @@
  
  	ddkSetMode(640,480, 32, 60, DDK_WINDOW, "sfxr"); // requests window size etc from ddrawkit
  
--	LoadTGA(font, "font.tga");
--	LoadTGA(ld48, "ld48.tga");
-+	LoadTGA(font, DATADIR "/font.tga");
-+	LoadTGA(ld48, DATADIR "/ld48.tga");
- 	ld48.width=ld48.pitch;
+-	if (LoadTGA(font, "/usr/share/sfxr/font.tga")) {
++	if (LoadTGA(font, DATADIR "/font.tga")) {
+         	/* Try again in cwd */
+ 		if (LoadTGA(font, "font.tga")) {
+ 			fprintf(stderr,
+-				"Error could not open /usr/share/sfxr/font.tga"
++				"Error could not open " DATADIR "/font.tga"
+ 				" nor font.tga\n");
+ 			exit(1);
+ 		}
+ 	}
  
- 	input=new DPInput(hWndMain, hInstanceMain); // WIN32
+-	if (LoadTGA(ld48, "/usr/share/sfxr/ld48.tga")) {
++	if (LoadTGA(ld48, DATADIR "/ld48.tga")) {
+         	/* Try again in cwd */
+ 		if (LoadTGA(ld48, "ld48.tga")) {
+ 			fprintf(stderr,
+-				"Error could not open /usr/share/sfxr/ld48.tga"
++				"Error could not open " DATADIR "/ld48.tga"
+ 				" nor ld48.tga\n");
+ 			exit(1);
+ 		}

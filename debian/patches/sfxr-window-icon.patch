@@ -1,11 +1,24 @@
-diff -up sfxr-sdl/sdlkit.h~ sfxr-sdl/sdlkit.h
---- sfxr-sdl/sdlkit.h~	2008-11-13 17:25:52.000000000 +0100
-+++ sfxr-sdl/sdlkit.h	2008-11-13 17:31:05.000000000 +0100
-@@ -128,6 +128,7 @@ static void sdlquit ()
- static void sdlinit ()
+Index: sfxr/sdlkit.h
+===================================================================
+--- sfxr.orig/sdlkit.h	2008-11-16 16:47:19.000000000 +0100
++++ sfxr/sdlkit.h	2008-11-16 16:58:14.000000000 +0100
+@@ -7,6 +7,10 @@
+ #include <stdio.h>
+ #include <string.h>
+ 
++#ifndef DATADIR
++DATADIR="/usr/share/sfxr"
++#endif
++
+ static void error (const char *file, unsigned int line, const char *msg)
  {
+ 	fprintf(stderr, "[!] %s:%u  %s\n", file, line, msg);
+@@ -129,7 +133,7 @@
+ {
+ 	SDL_Surface *icon;
  	VERIFY(!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO));
-+	SDL_WM_SetIcon(SDL_LoadBMP("/usr/share/sfxr/sfxr.bmp"), NULL);
- 	atexit(sdlquit);
- 	memset(keys, 0, sizeof(keys));
- 	ddkInit();
+-	icon = SDL_LoadBMP("/usr/share/sfxr/sfxr.bmp");
++	icon = SDL_LoadBMP(DATADIR "/sfxr.bmp");
+ 	if (!icon)
+ 		icon = SDL_LoadBMP("sfxr.bmp");
+ 	if (icon)
