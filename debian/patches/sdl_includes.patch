@@ -1,0 +1,16 @@
+# Copyright (C) 2008  Miriam Ruiz <little_miry@yahoo.es>
+# Distributed under the same license as the program. See debian/copyright.
+
+Index: sfxr-sdl/main.cpp
+===================================================================
+--- sfxr-sdl.orig/main.cpp	2008-08-30 22:32:31.000000000 +0200
++++ sfxr-sdl/main.cpp	2008-08-30 22:32:41.000000000 +0200
+@@ -20,7 +20,7 @@
+ #include "pa/portaudio.h"
+ #include "fileselector.h" // WIN32
+ #else
+-#include "SDL.h"
++#include "SDL/SDL.h"
+ #endif
+ 
+ #define rnd(n) (rand()%(n+1))

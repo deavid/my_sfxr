@@ -1,0 +1,10 @@
+--- sfxr-sdl/main.cpp	2008-11-13 22:26:03.000000000 +0100
++++ sfxr-sdl.new/main.cpp	2008-11-13 22:10:22.000000000 +0100
+@@ -1162,6 +1162,7 @@
+ 	des.freq = 44100;
+ 	des.format = AUDIO_S16SYS;
+ 	des.channels = 1;
++	des.samples = 512;
+ 	des.callback = SDLAudioCallback;
+ 	des.userdata = NULL;
+ 	VERIFY(!SDL_OpenAudio(&des, NULL));

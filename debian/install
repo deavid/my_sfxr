@@ -1,0 +1,6 @@
+*.tga usr/share/sfxr/
+sfxr usr/bin
+debian/*.xpm usr/share/pixmaps/
+debian/*.png usr/share/pixmaps/
+debian/*.bmp usr/share/sfxr/
+debian/*.desktop usr/share/applications/

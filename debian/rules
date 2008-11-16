@@ -1,0 +1,78 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+LDFLAGS=-Wl,-z,defs -Wl,-as-needed
+
+patch:
+	$(MAKE) -f /usr/share/quilt/quilt.make patch
+
+configure: configure-stamp
+configure-stamp: patch
+	dh_testdir
+	sng debian/sfxr.sng
+	cd debian && uudecode sfxr.bmp.uu
+	touch $@
+
+build: build-stamp
+build-stamp: configure-stamp  
+	dh_testdir
+	$(CXX) \
+		$(CFLAGS) \
+		-DDATADIR=\""/usr/share/sfxr"\" \
+		`pkg-config sdl gtk+-2.0 --cflags --libs` \
+		$(LDFLAGS) \
+		main.cpp \
+		-o sfxr
+	touch $@
+
+clean: 
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	rm -f sfxr
+	rm -f debian/sfxr.png debian/sfxr.bmp
+	$(MAKE) -f /usr/share/quilt/quilt.make unpatch
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs 
+	dh_installdocs
+	dh_installexamples
+	dh_install
+	dh_installmenu
+	dh_installman
+	dh_desktop
+	dh_link
+	dh_strip # --dbg-package=sfrx-dbg
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+get-orig-source:
+	dh_testdir
+	dh_testroot
+	wget http://www.cyd.liu.se/~tompe573/hp/files/sfxr-sdl.tar.gz
+	tar xvfz sfxr-sdl.tar.gz
+	rm sfxr-sdl/sfxr.exe
+	rm -f ../sfxr_0.0.20080203.orig.tar.gz
+	tar cvfz ../sfxr_0.0.20080203.orig.tar.gz sfxr-sdl
+	rm -r sfxr-sdl.tar.gz sfxr-sdl
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

@@ -1,0 +1,4 @@
+sdl_includes.patch
+data_directory.patch
+sfxr-fix-delay.patch
+sfxr-window-icon.patch

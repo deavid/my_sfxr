@@ -1,0 +1,29 @@
+# Copyright (C) 2008  Miriam Ruiz <little_miry@yahoo.es>
+# Distributed under the same license as the program. See debian/copyright.
+
+Index: sfxr-sdl/main.cpp
+===================================================================
+--- sfxr-sdl.orig/main.cpp	2008-08-30 22:39:35.000000000 +0200
++++ sfxr-sdl/main.cpp	2008-08-30 22:40:20.000000000 +0200
+@@ -23,6 +23,10 @@
+ #include "SDL/SDL.h"
+ #endif
+ 
++#ifndef DATADIR
++DATADIR="."
++#endif
++
+ #define rnd(n) (rand()%(n+1))
+ 
+ #define PI 3.14159265f
+@@ -1126,8 +1130,8 @@
+ 
+ 	ddkSetMode(640,480, 32, 60, DDK_WINDOW, "sfxr"); // requests window size etc from ddrawkit
+ 
+-	LoadTGA(font, "font.tga");
+-	LoadTGA(ld48, "ld48.tga");
++	LoadTGA(font, DATADIR "/font.tga");
++	LoadTGA(ld48, DATADIR "/ld48.tga");
+ 	ld48.width=ld48.pitch;
+ 
+ 	input=new DPInput(hWndMain, hInstanceMain); // WIN32

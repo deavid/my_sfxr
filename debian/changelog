@@ -1,0 +1,7 @@
+sfxr (1.0-1) UNRELEASED; urgency=low
+
+  * Initial release.
+  * Added patches: sfxr-datapath.patch sfxr-datapath.patch
+    Thanks to Hans de Goede <hdegoede@redhat.com>
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Sun, 16 Nov 2008 16:32:18 +0100

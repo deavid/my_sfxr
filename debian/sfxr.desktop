@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=sfxr sound effect generator
+Type=Application
+Exec=sfxr
+Icon=sfxr
+Encoding=UTF-8
+Comment=Small tool for generating basic sound effects
+Comment[es]=Pequeña utilidad para generar efectos sonoros sencillos
+Terminal=false
+StartupNotify=false
+Categories=AudioVideo;Audio;AudioVideoEditing;

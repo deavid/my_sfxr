@@ -1,0 +1,5 @@
+?package(sfxr):needs="X11" \
+	section="Applications/Sound"\
+	title="sfxr sound effect generator" \
+	command="/usr/bin/sfxr" \
+	icon="/usr/share/pixmaps/sfxr.xpm"

@@ -1,0 +1,21 @@
+Source: sfxr
+Section: sound
+Priority: extra
+Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
+Uploaders: Miriam Ruiz <little_miry@yahoo.es>
+Build-Depends: debhelper (>= 7), sng, sharutils, quilt, pkg-config,
+ libsdl1.2-dev, libgtk2.0-dev
+Standards-Version: 3.8.0
+Homepage: http://www.cyd.liu.se/~tompe573/hp/project_sfxr.html
+Vcs-Svn: svn://svn.debian.org/svn/pkg-games/packages/trunk/sfxr/
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-games/packages/trunk/sfxr/?op=log
+
+Package: sfxr
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: small tool for generating basic sound effects
+ sfxr is a small tool for getting basic sound effects into a game. The idea
+ is that someone can just hit a few buttons in this application and get some
+ largely randomized that the user can accept or reject. All the parameters
+ used to create each sound are manually tweakable to allow fine-tuning
+ if you feel like getting your hands dirty.
