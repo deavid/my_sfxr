@@ -23,6 +23,10 @@
 #include "SDL/SDL.h"
 #endif
 
+#ifndef DATADIR
+DATADIR="/usr/share/sfxr"
+#endif
+
 #define rnd(n) (rand()%(n+1))
 
 #define PI 3.14159265f
@@ -1126,21 +1130,21 @@ void ddkInit()
 
 	ddkSetMode(640,480, 32, 60, DDK_WINDOW, "sfxr"); // requests window size etc from ddrawkit
 
-	if (LoadTGA(font, "/usr/share/sfxr/font.tga")) {
+	if (LoadTGA(font, DATADIR "/font.tga")) {
         	/* Try again in cwd */
 		if (LoadTGA(font, "font.tga")) {
 			fprintf(stderr,
-				"Error could not open /usr/share/sfxr/font.tga"
+				"Error could not open " DATADIR "/font.tga"
 				" nor font.tga\n");
 			exit(1);
 		}
 	}
 
-	if (LoadTGA(ld48, "/usr/share/sfxr/ld48.tga")) {
+	if (LoadTGA(ld48, DATADIR "/ld48.tga")) {
         	/* Try again in cwd */
 		if (LoadTGA(ld48, "ld48.tga")) {
 			fprintf(stderr,
-				"Error could not open /usr/share/sfxr/ld48.tga"
+				"Error could not open " DATADIR "/ld48.tga"
 				" nor ld48.tga\n");
 			exit(1);
 		}
