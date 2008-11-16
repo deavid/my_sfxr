@@ -1126,8 +1126,26 @@ void ddkInit()
 
 	ddkSetMode(640,480, 32, 60, DDK_WINDOW, "sfxr"); // requests window size etc from ddrawkit
 
-	LoadTGA(font, "font.tga");
-	LoadTGA(ld48, "ld48.tga");
+	if (LoadTGA(font, "/usr/share/sfxr/font.tga")) {
+        	/* Try again in cwd */
+		if (LoadTGA(font, "font.tga")) {
+			fprintf(stderr,
+				"Error could not open /usr/share/sfxr/font.tga"
+				" nor font.tga\n");
+			exit(1);
+		}
+	}
+
+	if (LoadTGA(ld48, "/usr/share/sfxr/ld48.tga")) {
+        	/* Try again in cwd */
+		if (LoadTGA(ld48, "ld48.tga")) {
+			fprintf(stderr,
+				"Error could not open /usr/share/sfxr/ld48.tga"
+				" nor ld48.tga\n");
+			exit(1);
+		}
+	}
+
 	ld48.width=ld48.pitch;
 
 	input=new DPInput(hWndMain, hInstanceMain); // WIN32
@@ -1162,6 +1180,7 @@ void ddkInit()
 	des.freq = 44100;
 	des.format = AUDIO_S16SYS;
 	des.channels = 1;
+	des.samples = 512;
 	des.callback = SDLAudioCallback;
 	des.userdata = NULL;
 	VERIFY(!SDL_OpenAudio(&des, NULL));
