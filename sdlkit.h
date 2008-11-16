@@ -127,7 +127,13 @@ static void sdlquit ()
 
 static void sdlinit ()
 {
+	SDL_Surface *icon;
 	VERIFY(!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO));
+	icon = SDL_LoadBMP("/usr/share/sfxr/sfxr.bmp");
+	if (!icon)
+		icon = SDL_LoadBMP("sfxr.bmp");
+	if (icon)
+		SDL_WM_SetIcon(icon, NULL);
 	atexit(sdlquit);
 	memset(keys, 0, sizeof(keys));
 	ddkInit();

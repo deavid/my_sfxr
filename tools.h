@@ -1,9 +1,11 @@
-void LoadTGA(Spriteset& tiles, const char *filename)
+int LoadTGA(Spriteset& tiles, const char *filename)
 {
 	FILE *file;
 	unsigned char byte, crap[16], id_length;
 	int n, width, height, channels, x, y;
 	file=fopen(filename, "rb");
+	if (!file)
+		return -1;
 	fread(&id_length, 1, 1, file);
 	fread(crap, 1, 11, file);
 	width=0;
@@ -32,6 +34,8 @@ void LoadTGA(Spriteset& tiles, const char *filename)
 	tiles.height=height;
 	tiles.width=height;
 	tiles.pitch=width;
+	
+	return 0;
 }
 
 void ClearScreen(DWORD color)
