@@ -20,7 +20,7 @@
 #include "pa/portaudio.h"
 #include "fileselector.h" // WIN32
 #else
-#include "SDL.h"
+#include "SDL/SDL.h"
 #endif
 
 #define rnd(n) (rand()%(n+1))
